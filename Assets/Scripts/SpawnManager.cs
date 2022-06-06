@@ -14,12 +14,14 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 1;
     public int enemyCount;
     // Start is called before the first frame update
+    //calls functions
     void Start()
     {
         spawnEnemyWave(waveNumber);
         Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
 
+    //spawns enemys of varying wave size based on wave number
     void spawnEnemyWave(int enemiesToSpawn)
     {
         for (int i = 0; i < enemiesToSpawn; i++)
@@ -28,6 +30,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    //overall range function
     private Vector3 GenerateSpawnPosition ()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
@@ -40,6 +43,8 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //gets enemy count and makes waves and powerups based on that
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if (enemyCount == 0)
         {
@@ -47,7 +52,7 @@ public class SpawnManager : MonoBehaviour
             spawnEnemyWave(waveNumber);
             Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
-
+        //teleports the player to final scene one stage 8 is reached
         if (waveNumber == 8)
         {
             SceneManager.LoadScene(2);

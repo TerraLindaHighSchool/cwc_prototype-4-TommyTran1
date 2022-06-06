@@ -37,22 +37,23 @@ public class Enemy : MonoBehaviour
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
 
-        //Special code for jumping variant of enemy
+        //Special code for jumping variant of enemy which only runs with is ground as true
         if (isGrounded && jumper == true)
         {
             Jump();
         }
     }
+    //checks the game object to see if it is on the gorudn
     void OnCollisionStay()
     {
         isGrounded = true;
     }
 
+    //Makes the object jump
     void Jump()
     {
         enemyRb.AddForce(jumpPos * jumpForce, ForceMode.Impulse);
         isGrounded = false;
-        Debug.Log("AMONG");
     }
 }
 

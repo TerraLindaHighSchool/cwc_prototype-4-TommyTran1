@@ -7,6 +7,7 @@ using UnityEngine;
 //Version 2019.4.29
 public class RotateCamera : MonoBehaviour
 {
+    //not used anymore
     public float rotationSpeed;
 
     // Start is called before the first frame update
