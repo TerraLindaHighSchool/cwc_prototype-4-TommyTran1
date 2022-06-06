@@ -11,16 +11,17 @@ public class Enemy : MonoBehaviour
     public int jumpForce = 2;
     GameObject player;
     public float speed;
-    public bool jump;
-    public bool jumped;
+    public Vector3 jumpPos;
+    public bool jumper;
+    public bool isGrounded;
     public float jumpCooldown = 2.0f;
-    private float nextJump = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
         //assigns the Rb and player object for variables
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
+        jumpPos = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -37,26 +38,21 @@ public class Enemy : MonoBehaviour
         enemyRb.AddForce(lookDirection * speed);
 
         //Special code for jumping variant of enemy
-        if(jump == true)
+        if (isGrounded && jumper == true)
         {
-            if (jumped == true)
-            {
-                Jump();
-            }
+            Jump();
         }
-
-
     }
-    public void Jump()
+    void OnCollisionStay()
     {
-        float compareTime = Time.time + jumpCooldown;
+        isGrounded = true;
+    }
 
-        if (compareTime > Time.time)
-        {
-        }
-        {
-            enemyRb.AddForce(Vector3.up * jumpForce);
-            Debug.Log("AMONG");
-        }
+    void Jump()
+    {
+        enemyRb.AddForce(jumpPos * jumpForce, ForceMode.Impulse);
+        isGrounded = false;
+        Debug.Log("AMONG");
     }
 }
+

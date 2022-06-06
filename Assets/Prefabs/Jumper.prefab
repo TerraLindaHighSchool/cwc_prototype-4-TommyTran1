@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5906322991137331950}
   m_Layer: 0
   m_Name: Jumper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6a25a8542e9dd4ebdfe179c30628da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 2
-  speed: 0
-  jump: 1
+  jumpForce: 4
+  speed: 1
+  jumpPos: {x: 0, y: 0, z: 0}
+  jumper: 1
+  isGrounded: 0
+  jumpCooldown: 5
