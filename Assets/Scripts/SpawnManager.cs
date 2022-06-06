@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+//Tommy Tran
+//6/06/2022
+//Version 2019.4.29
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
@@ -43,5 +47,11 @@ public class SpawnManager : MonoBehaviour
             spawnEnemyWave(waveNumber);
             Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
+
+        if (waveNumber == 8)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
+
 }

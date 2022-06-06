@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tommy Tran
+//6/06/2022
+//Version 2019.4.29
 public class PlayerController : MonoBehaviour
 {
     private GameObject focalPoint;
     public GameObject powerupIndicator;
-    private float powerupStrength = 15.0f;
-    public float speed = 5.0f;
+    private float powerupPushStrength = 15.0f;
+    public float speed = 1.0f;
     public bool hasPowerup;
     public Rigidbody playerRb;
 
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody enemyRigidBody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
             Debug.Log("Collided With" + collision.gameObject.name + "with powerup set to" + hasPowerup);
-            enemyRigidBody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            enemyRigidBody.AddForce(awayFromPlayer * powerupPushStrength, ForceMode.Impulse);
         }
     }
 
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
-        float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
+        float horizontalInput = Input.GetAxis("Horizontal");
+        playerRb.AddForce(new Vector3(Input.GetAxis("Vertical") * speed, 0, -horizontalInput * speed), ForceMode.Impulse);
     }
 }

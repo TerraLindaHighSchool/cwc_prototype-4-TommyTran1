@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tommy Tran
+//6/06/2022
+//Version 2019.4.29
 public class RotateCamera : MonoBehaviour
 {
     public float rotationSpeed;
